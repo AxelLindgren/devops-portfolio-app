@@ -1,5 +1,7 @@
 # DevOps Portfolio
 
+Production-style DevOps portfolio project demonstrating containerization, CI/CD, Infrastructure as Code, and Kubernetes deployment.
+
 ## What this project does
 A minimal cloud-native Python application that is containerized with Docker, tested in CI, and deployed to AWS using Terraform.
 The app exposes a health and version endpoint and runs on an EC2 instance provisioned through Infrastructure as Code.
