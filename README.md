@@ -1,4 +1,4 @@
-![CI](https://github.com/AxelLindgren/devops-portfolio-app/blob/main/.github/workflows/ci.yml/badge.svg)
+![CI](https://github.com/AxelLindgren/devops-portfolio-app/actions/workflows/ci.yml/badge.svg)
 
 # DevOps Portfolio
 
