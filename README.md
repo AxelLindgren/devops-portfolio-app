@@ -1,3 +1,5 @@
+![CI](https://github.com/AxelLindgren/devops-portfolio-app/blob/main/.github/workflows/ci.yml/badge.svg)
+
 # DevOps Portfolio
 
 Production-style DevOps portfolio project demonstrating containerization, CI/CD, Infrastructure as Code, and Kubernetes deployment.
