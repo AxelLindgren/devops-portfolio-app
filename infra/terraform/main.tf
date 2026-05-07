@@ -18,32 +18,14 @@ provider "aws" {
   region = var.aws_region
 }
 
-resource "aws_security_group" "app_sg" {
-  name        = "portfolio-sg"
-  description = "Allow SSH and app port"
+data "aws_vpc" "default" {
+  default = true
+}
 
-  ingress {
-    description = "SSH"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    description = "App port"
-    from_port   = 8000
-    to_port     = 8000
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+module "network" {
+  source      = "./modules/network"
+  name_prefix = "portfolio"
+  vpc_id      = data.aws_vpc.default.id
 }
 
 resource "aws_instance" "app" {
@@ -52,7 +34,7 @@ resource "aws_instance" "app" {
   key_name      = var.key_name
 
   vpc_security_group_ids = [
-    aws_security_group.app_sg.id
+    module.network.security_group_id
   ]
 
   tags = {
