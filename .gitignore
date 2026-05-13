@@ -15,3 +15,6 @@ __pycache__/
 __pycache__/
 minikube-linux-amd64
 terraform-test/
+
+*.retry
+.vscode/

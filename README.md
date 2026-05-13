@@ -95,3 +95,32 @@ On every push:
 - Code is tested in GitHub Actions
 - Docker image is built
 - Linting and tests must pass
+
+# Ansible Nginx Demo
+
+Small project to learn Ansible basics. Provisions nginx on a 
+containerized Ubuntu target, deploys a templated HTML page, 
+manages the service.
+
+## What it demonstrates
+- Declarative configuration with YAML playbooks
+- Jinja2 templating with variables
+- Handlers (reload-on-change)
+- Idempotency (rerun = no changes)
+- Agentless SSH-based execution
+
+## Stack
+Ansible, Docker (target host), Ubuntu 22.04, nginx
+
+## Run
+```bash
+docker build -f Dockerfile.target -t ansible-target .
+docker run -d --name target -p 2222:22 -p 8080:80 ansible-target
+ansible-playbook -i inventory/hosts.ini playbooks/site.yml
+```
+
+Visit http://localhost:8080
+
+## Notes
+Demo uses password auth against a local throwaway container. 
+Production setup would use SSH keys and Ansible Vault for secrets.

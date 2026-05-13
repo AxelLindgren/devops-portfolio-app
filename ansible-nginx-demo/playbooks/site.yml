@@ -1,0 +1,40 @@
+---
+- name: Provision nginx web server
+  hosts: webservers
+  become: yes
+
+  vars:
+    site_title: "Axel's Ansible Demo"
+    deployment_message: "Configuration management is declarative state enforcement."
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Deploy custom index.html from template
+      template:
+        src: ../templates/index.html.j2
+        dest: /var/www/html/index.html
+        owner: www-data
+        group: www-data
+        mode: '0644'
+      notify: reload nginx
+
+    - name: Ensure nginx is started and enabled
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+  handlers:
+    - name: reload nginx
+      service:
+        name: nginx
+        state: reloaded

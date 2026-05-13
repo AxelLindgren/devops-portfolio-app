@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ site_title }}</title>
+  <style>
+    body {
+      background: #0a0f0a;
+      color: #d4d4d4;
+      font-family: 'DM Mono', monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      border: 1px solid #2d4a2d;
+      padding: 3rem;
+      text-align: center;
+      max-width: 600px;
+    }
+    h1 {
+      color: #4a7c4a;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+    }
+    .meta { opacity: 0.6; font-size: 0.85rem; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>{{ site_title }}</h1>
+    <p>{{ deployment_message }}</p>
+    <div class="meta">
+      Deployed by Ansible · Host: {{ ansible_hostname }}
+    </div>
+  </div>
+</body>
+</html>
